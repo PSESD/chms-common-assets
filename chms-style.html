@@ -1,0 +1,66 @@
+<style is="custom-style">
+
+* {
+    /*
+     * You can use these generic variables in your elements for easy theming.
+     * For example, if all your elements use `--primary-text-color` as its main
+     * color, then switching from a light to a dark theme is just a matter of
+     * changing the value of `--primary-text-color` in your application.
+     *
+     * https://www.google.com/design/spec/style/color.html#color-color-palette
+     */
+    --primary-text-color: var(--light-theme-text-color);
+    --primary-background-color: var(--light-theme-background-color);
+    --secondary-text-color: var(--light-theme-secondary-color);
+    --disabled-text-color: var(--light-theme-disabled-color);
+    --divider-color: var(--light-theme-divider-color);
+    --error-color: var(--paper-deep-orange-a700);
+
+    /*
+     * Primary and accent colors. Also see color.html for more colors.
+     */
+    --primary-color: var(--paper-cyan-400);
+    --light-primary-color: var(--paper-cyan-100);
+    --dark-primary-color: var(--paper-cyan-700);
+
+    --accent-color: var(--paper-red-200);
+    --light-accent-color: var(--paper-red-100);
+    --dark-accent-color: var(--paper-red-400);
+
+
+    --primary-container-width: 90%;
+
+    --iron-container-width: var(--primary-container-width);
+}
+
+
+app-header {
+    background: var(--paper-toolbar-background, --primary-color);
+    color: var(--paper-toolbar-color, --dark-theme-text-color);
+    --app-header-background-rear-layer: {
+    };
+}
+
+app-toolbar.primary {
+  display: block;
+}
+
+app-toolbar.primary [title] {
+    font-weight: lighter;
+}
+app-toolbar.primary [condensed-title] {
+    font-weight: lighter;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 639px) {
+app-toolbar.primary [title] {
+    font-size: 30px;
+}
+app-toolbar.primary [condensed-title] {
+    font-size: 15px;
+}
+}
+
+</style>
