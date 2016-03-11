@@ -8,6 +8,9 @@
   "moduleType": [],
   "license": "MIT",
   "homepage": "",
+  "dependencies": {
+    "js-md5": "^2.3.0"
+  },
   "ignore": [
     "**/.*",
     "node_modules",

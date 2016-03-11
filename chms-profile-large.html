@@ -1,0 +1,92 @@
+<dom-module id="chms-profile-large">
+    <style>
+        :host{
+            @apply(--layout-center);
+        }
+        paper-card.profile { 
+            @apply(--layout-horizontal); 
+        }
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            float: left;
+            background: url('images/profile-120.png');
+          }
+          .profile-content {
+            @apply(--layout-flex);
+          }
+          .profile-header { @apply(--paper-font-headline); }
+          .profile-detail { color: var(--paper-grey-600); margin: 10px 0; }
+          
+    </style>
+    <template>
+        <paper-card class="profile" elevation="1">
+            <iron-image class="profile-image" fade sizing="cover" preload src$="[[gravatarUrl]]"></iron-image>
+            <div class="card-content">
+                <div class="profile-content">
+                    <div class="profile-header">[[ personName ]]</div>
+                    <div class="profile-detail">[[ personDetail ]]</div>
+                </div>
+            </div>
+        </paper-card>
+    </template>
+    <script src="../js-md5/js/md5.min.js"></script>
+    <script>
+    Polymer({
+        is: 'chms-profile-large',
+        properties: {
+            person: {
+                type: Object,
+                value: function() {
+                    return {
+                        'first_name': '',
+                        'last_name': '',
+                        'email': ''
+                    };
+                }
+            },
+            gravatarDefaultImg: {
+                type: String,
+                value: ''
+            },
+            gravatarSecure: {
+                type: Boolean,
+                value: true
+            },
+            gravatarRating: {
+                type: String,
+                value: 'g'
+            },
+            gravatarUrl: {
+                type: String
+            },
+            personName: {
+                type: String
+            },
+            personDetail: {
+                type: String
+            }
+        },
+        ready: function() {
+            this.gravatarUrl = this._computeGravatarUrl();
+            this.personName = this.person.first_name + ' ' + this.person.last_name;
+            this.personDetail = this.person.email;
+        },
+        _setDefaultProfile: function() {
+            console.log("profile error");
+        },
+        _computeGravatarUrl: function() {
+            var url = [
+                this.gravatarSecure ? 'https' : 'http',
+                '://www.gravatar.com/avatar/',
+                md5(this.person.email.trim().toLowerCase()),
+                '.jpeg',
+                '?s=120',
+                '&d=blank',
+                '&r=' + this.gravatarRating
+            ].join('');
+            return url;
+        }
+    });
+    </script>
+</dom-module>
